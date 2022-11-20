@@ -1,6 +1,8 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
+import { fetchCountries } from './js/fetchCountries';
+
 
 
 const DEBOUNCE_DELAY = 300;
@@ -12,17 +14,6 @@ const DEBOUNCE_DELAY = 300;
 }
 
 refs.input.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY))
-
- function fetchCountries(name) {
-    const BASE_URL = "https://restcountries.com/v3.1/name/";
-    return fetch(`${BASE_URL}${name}?fields=name,capital,population,flags,languages`).then(responce => {
-        if (!responce.ok) {
-            throw new Error();
-            return
-        }
-        return responce.json();
-    }).catch(err => console.log(err))
-}
 
 
 function onSearch(evt) {
